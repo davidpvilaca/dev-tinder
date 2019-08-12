@@ -1,10 +1,14 @@
 import axios from 'axios';
 
+const apiURL = process.env.REACT_APP_API_URL || 'http://localhost:3333';
+
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3333'
+  baseURL: apiURL
 });
 
 console.log({ env: process.env.REACT_APP_API_URL })
+
+export { apiURL };
 
 export default {
   createUser: async username => (await api.post('/devs', { username })).data,
